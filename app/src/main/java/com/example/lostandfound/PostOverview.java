@@ -45,10 +45,10 @@ public class PostOverview extends AppCompatActivity {
 
         Intent intent = getIntent();
         String postTypeString = intent.getStringExtra("postType");
-        String nameString = intent.getStringExtra("name");
-        String phoneString = intent.getStringExtra("phone");
-        String descriptionString = intent.getStringExtra("description");
-        String dateString = intent.getStringExtra("date");
+        String nameString = postTypeString + " by: " + intent.getStringExtra("name");
+        String phoneString = "Phone: " + intent.getStringExtra("phone");
+        String descriptionString = "Description: " + intent.getStringExtra("description");
+        String dateString = "Date " + postTypeString.toLowerCase() + ": " +intent.getStringExtra("date");
         String id = intent.getStringExtra("id");
 
 
@@ -64,20 +64,16 @@ public class PostOverview extends AppCompatActivity {
         date = findViewById(R.id.date);
 
 
-        postType.setText(postTypeString);
 
+        postType.setText(postTypeString);
 
         name.setText(nameString);
 
-
         phone.setText(phoneString);
-
 
         description.setText(descriptionString);
 
-
         date.setText(dateString);
-
 
 
         removeButton.setOnClickListener(new View.OnClickListener() {

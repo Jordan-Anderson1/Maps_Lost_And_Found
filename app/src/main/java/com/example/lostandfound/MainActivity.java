@@ -21,7 +21,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class MainActivity extends AppCompatActivity {
 
     Button showAllButton, createAdvertButton, showMapButton;
-    EditText locationEditText;
+
 
 
     LocationManager locationManager;
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
-        locationEditText = findViewById(R.id.locationEditText);
+
         createAdvertButton = findViewById(R.id.createAdvertButton);
         showAllButton = findViewById(R.id.showAllButton);
         showMapButton = findViewById(R.id.showMapButton);
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, CreateAdvertActivity.class);
                 startActivity(intent);
-                finish();
+
             }
         });
 
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ShowAllActivity.class);
                 startActivity(intent);
-                finish();
+
             }
         });
 
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, MapsActivity.class);
                 startActivity(intent);
-                finish();
+
             }
         });
 
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(@NonNull Location location) {
-                locationEditText.setText(location.toString());
+
             }
         };
 

@@ -70,7 +70,7 @@ public class ShowAllActivity extends AppCompatActivity {
                             Double longitude = (Double) locationMap.get("longitude");
 
                             if(latitude != null & longitude != null){
-                                Toast.makeText(ShowAllActivity.this, "values not null", Toast.LENGTH_SHORT).show();
+
                                 LatLng latLng = new LatLng(latitude, longitude);
                                 LostFoundItem item = new LostFoundItem(documentSnapshot.get("name").toString(),
                                         documentSnapshot.get("phone").toString(), documentSnapshot.get("description").toString(),

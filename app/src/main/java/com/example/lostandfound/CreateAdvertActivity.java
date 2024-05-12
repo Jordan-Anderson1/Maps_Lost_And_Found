@@ -7,11 +7,13 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -22,24 +24,31 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 import com.google.firebase.Firebase;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.android.libraries.places.api.Places;
 
 import org.w3c.dom.Document;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public class CreateAdvertActivity extends AppCompatActivity {
 
-    EditText nameEditText, phoneEditText, descriptionEditText, dateEditText, locationEditText;
+    EditText nameEditText, phoneEditText, descriptionEditText, dateEditText;
+    TextView locationTextView;
     Button submitButton, getCurrentLocationButton;
 
     FirebaseFirestore fStore;
@@ -69,7 +78,7 @@ public class CreateAdvertActivity extends AppCompatActivity {
         phoneEditText = findViewById(R.id.phoneEditText);
         descriptionEditText = findViewById(R.id.descriptionEditText);
         dateEditText = findViewById(R.id.dateEditText);
-        locationEditText = findViewById(R.id.locationEditText);
+        locationTextView = findViewById(R.id.locationTexView);
 
 
         submitButton = findViewById(R.id.submitButton);
@@ -82,6 +91,35 @@ public class CreateAdvertActivity extends AppCompatActivity {
 
         fStore = FirebaseFirestore.getInstance();
 
+
+
+        if(!Places.isInitialized()){
+            Places.initialize(getApplicationContext(), "AIzaSyBTO6pLwVGMa3fUTfhhnn3kOV6XHcRRF8o");
+        }
+
+        // Initialize the AutocompleteSupportFragment.
+        AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
+                getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
+
+        // Specify the types of place data to return.
+        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG));
+
+        // Set up a PlaceSelectionListener to handle the response.
+        autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            @Override
+            public void onPlaceSelected(@NonNull Place place) {
+
+                if(place.getLatLng() != null){
+                    currentLocation = place.getLatLng();
+                    locationTextView.setText(currentLocation.toString());
+                }
+            }
+
+            @Override
+            public void onError(@NonNull Status status) {
+                Log.i("TAG", "An error occurred: " + status);
+            }
+        });
 
         //gets the post type and stores in postTypeString
         postTypeRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -111,7 +149,8 @@ public class CreateAdvertActivity extends AppCompatActivity {
                         || TextUtils.isEmpty(phone)
                         || TextUtils.isEmpty(description)
                         || TextUtils.isEmpty(date)
-                        || TextUtils.isEmpty(postTypeString)) {
+                        || TextUtils.isEmpty(postTypeString)
+                        || TextUtils.isEmpty((currentLocation.toString()))) {
                     Toast.makeText(CreateAdvertActivity.this, "Please complete all fields", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -159,7 +198,7 @@ public class CreateAdvertActivity extends AppCompatActivity {
                                     double latitude = location.getLatitude();
                                     double longitude = location.getLongitude();
                                     currentLocation = new LatLng(latitude, longitude);
-                                    locationEditText.setText(currentLocation.toString());
+                                    locationTextView.setText(currentLocation.toString());
                                 }else{
                                     Toast.makeText(CreateAdvertActivity.this, "Unable to retrieve location", Toast.LENGTH_SHORT).show();
                                 }
@@ -174,26 +213,6 @@ public class CreateAdvertActivity extends AppCompatActivity {
 
     }
 
-    private LatLng parseLatLngFromString(String locationString) {
-        try {
-            // Remove "lat/lng: " and parentheses from the string
-            String cleanString = locationString.replace("lat/lng: ", "")
-                    .replace("(", "")
-                    .replace(")", "");
-            String[] latLngArray = cleanString.split(", ");
-            if (latLngArray.length == 2) {
-                double latitude = Double.parseDouble(latLngArray[0]);
-                double longitude = Double.parseDouble(latLngArray[1]);
-                Toast.makeText(CreateAdvertActivity.this, "Successful parse", Toast.LENGTH_SHORT).show();
-                return new LatLng(latitude, longitude);
 
-            }
-        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-            e.printStackTrace();
-        }
-        Toast.makeText(CreateAdvertActivity.this, "Null returned from LATLNG PARSE", Toast.LENGTH_SHORT).show();
-        return null;
-
-    }
 
 }

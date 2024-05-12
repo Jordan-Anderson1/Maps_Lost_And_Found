@@ -43,22 +43,6 @@
         android:padding="20dp"
         android:id="@+id/showMapButton"/>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/location"
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"
-        android:background="#30ffffff"
-        android:layout_margin="20dp"
-        android:textSize="24sp"
-        android:padding="20dp"
-        android:drawableStart="@drawable/baseline_location_pin_24"
-        android:drawablePadding="20dp"
-        android:inputType="text"
-        android:id="@+id/locationEditText"
-
-        />
 
 
 
