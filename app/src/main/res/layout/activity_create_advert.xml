@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreateAdvertActivity"
+    android:orientation="vertical"
+    android:background="@drawable/background_main">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:id="@+id/postType">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/post_type"
+                android:textSize="24sp"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:textColor="@color/text"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lost"
+                android:textSize="24sp"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:buttonTint="@color/white"
+                android:textColor="@color/white"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:buttonTint="@color/white"
+                android:text="@string/found"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                />
+
+        </RadioGroup>
+
+    <EditText
+        android:id="@+id/nameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/name"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:background="#30ffffff"
+        android:layout_margin="20dp"
+        android:textSize="24sp"
+        android:padding="20dp"
+        android:drawableStart="@drawable/baseline_person_24"
+        android:drawablePadding="20dp"
+        android:inputType="text"
+       />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/phone"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:background="#30ffffff"
+        android:layout_margin="20dp"
+        android:textSize="24sp"
+        android:padding="20dp"
+        android:drawableStart="@drawable/baseline_phone_enabled_24"
+        android:drawablePadding="20dp"
+        android:inputType="phone"
+        android:id="@+id/phoneEditText"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/description"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:background="#30ffffff"
+        android:layout_margin="20dp"
+        android:textSize="24sp"
+        android:padding="20dp"
+        android:drawableStart="@drawable/baseline_description_24"
+        android:drawablePadding="20dp"
+        android:inputType="text"
+        android:id="@+id/descriptionEditText"
+
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/date"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:background="#30ffffff"
+        android:layout_margin="20dp"
+        android:textSize="24sp"
+        android:padding="20dp"
+        android:drawableStart="@drawable/baseline_date_range_24"
+        android:drawablePadding="20dp"
+        android:inputType="date"
+        android:id="@+id/dateEditText"
+
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/location"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:background="#30ffffff"
+        android:layout_margin="20dp"
+        android:textSize="24sp"
+        android:padding="20dp"
+        android:drawableStart="@drawable/baseline_location_pin_24"
+        android:drawablePadding="20dp"
+        android:inputType="text"
+        android:id="@+id/locationEditText"
+
+        />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/get_curent_location"
+            android:background="#30ffffff"
+            android:layout_margin="20dp"
+            android:textSize="24sp"
+            android:padding="20dp"
+            android:id="@+id/getCurrentLocationButton"/>
+
+    </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:id="@+id/submitButton"
+        android:text="@string/submit"
+        android:textColor="@color/white"
+        android:background="#284E60"
+        android:layout_margin="20dp"
+        android:textSize="24sp"
+        android:padding="20dp"
+        android:layout_gravity="bottom"
+        />
+
+
+
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

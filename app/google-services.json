@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "631039122810",
+    "project_id": "mapslostandfound-e55e8",
+    "storage_bucket": "mapslostandfound-e55e8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:631039122810:android:05a8124e7f102e76c14ac3",
+        "android_client_info": {
+          "package_name": "com.example.lostandfound"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPFbHh4k0takdvcd_0AX8mjNqvgRm-laM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
